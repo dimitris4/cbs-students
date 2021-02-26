@@ -10,17 +10,21 @@ import { Post } from '../entities/Post';
 })
 export class NeweditpostComponent implements OnInit {
   public selectedPost: Post;
+  public title: string
 
   constructor(private route: ActivatedRoute, private tempDataService: DataService) { }
 
   ngOnInit(): void {
-    const id: string = this.route.snapshot.paramMap.get('myId');
-    console.log(id);
-
-    this.selectedPost = this.tempDataService.getPosts().find(post => post.id === id);
+    this.route.paramMap
+      .subscribe(params => {
+        if (params.get('id') === 'create') {
+          this.selectedPost = new Post();
+          this.title = 'New post';
+        } else {
+          this.selectedPost = this.tempDataService.getPosts().find(post => post.id === params.get('id'));
+          this.title = 'Edit post';
+        }
+      });
     console.log(this.selectedPost);
-    
-
   }
-
 }

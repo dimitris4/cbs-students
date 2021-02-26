@@ -9,6 +9,11 @@ export class Post {
     media?: string;
     collections: Collection[];
     comments: Comment[];
+
+    constructor() {
+      this.title = '';
+      this.text = '';
+    }
 }
 
 export class Comment {

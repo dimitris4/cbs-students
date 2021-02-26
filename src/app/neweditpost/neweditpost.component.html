@@ -1,6 +1,20 @@
-<p>neweditpost works!</p>
+<div class="main-container">
+  <a  [routerLink]="'/posts'"> < Back </a>
 
-<mat-form-field class="example-full-width">
-    <mat-label>Title</mat-label>
-    <input matInput placeholder="Title" value="{{selectedPost.title}}">
-  </mat-form-field>
+  <div class="flexHeader">
+    <h3>{{ title }}</h3>
+  </div>
+
+  <div id="create-post-form">
+    <mat-form-field appearance="fill">
+      <mat-label>Title</mat-label>
+      <input matInput [value]="selectedPost.title"  >
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Text</mat-label>
+      <textarea matInput [value]="selectedPost.text"></textarea>
+    </mat-form-field>
+  </div>
+
+</div>
