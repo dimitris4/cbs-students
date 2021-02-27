@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from '../data.service';
 import { Post } from '../entities/Post';
+import {FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-neweditpost',
@@ -10,9 +11,10 @@ import { Post } from '../entities/Post';
 })
 export class NeweditpostComponent implements OnInit {
   public selectedPost: Post;
-  public title: string
+  public title: string;
+  public postForm: FormGroup;
 
-  constructor(private route: ActivatedRoute, private tempDataService: DataService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private tempDataService: DataService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.route.paramMap
@@ -25,6 +27,26 @@ export class NeweditpostComponent implements OnInit {
           this.title = 'Edit post';
         }
       });
-    console.log(this.selectedPost);
+
+    this.postForm = this.fb.group({
+      title: [this.selectedPost.title],
+      text: [this.selectedPost.text],
+      id: [this.selectedPost.id],
+    });
   }
+
+  onSubmitPost(): void {
+    this.selectedPost = this.postForm.value;
+    this.selectedPost.createdDate = new Date();
+    if (this.title === 'New post') {
+      this.selectedPost.id = Math.floor(Math.random() * 100);
+      console.log(this.selectedPost.id);
+      this.tempDataService.addPost(this.selectedPost);
+    } else {
+      console.log(this.selectedPost.id);
+      this.tempDataService.editPost(this.selectedPost);
+    }
+    this.router.navigate(['/posts']);
+  }
+
 }

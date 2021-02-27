@@ -1,0 +1,20 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>{{post.title}}</mat-card-title>
+    <mat-card-subtitle>{{post.createdDate | date: 'dd/MM/yyyy'}}</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+  <mat-card-content>
+    <p>
+      {{post.text}}
+    </p>
+  </mat-card-content>
+
+<!--  edit and delete button-->
+  <mat-card-actions>
+    <button mat-stroked-button color="primary" [routerLink]="['/posts', post.id]">Edit</button>
+    <button mat-stroked-button color="danger" (click)=onDeleteButtonClick(post.id)>Delete</button>
+  </mat-card-actions>
+
+</mat-card>

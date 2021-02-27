@@ -1,20 +1,26 @@
 <div class="main-container">
   <a  [routerLink]="'/posts'"> < Back </a>
 
-  <div class="flexHeader">
-    <h3>{{ title }}</h3>
-  </div>
+  <form [formGroup]="postForm" (ngSubmit)="onSubmitPost()">
 
-  <div id="create-post-form">
-    <mat-form-field appearance="fill">
-      <mat-label>Title</mat-label>
-      <input matInput [value]="selectedPost.title"  >
-    </mat-form-field>
+    <div class="flexHeader">
+      <h3>{{ title }}</h3>
+    </div>
 
-    <mat-form-field appearance="fill">
-      <mat-label>Text</mat-label>
-      <textarea matInput [value]="selectedPost.text"></textarea>
-    </mat-form-field>
-  </div>
+    <div id="create-post-form">
+      <mat-form-field appearance="fill">
+        <mat-label>Title</mat-label>
+        <input matInput formControlName="title" >
+        <input formControlName="id" hidden>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Text</mat-label>
+        <textarea matInput formControlName="text"></textarea>
+      </mat-form-field>
+    </div>
+
+    <button mat-raised-button color="primary">Save</button>
+  </form>
 
 </div>

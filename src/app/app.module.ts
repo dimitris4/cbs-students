@@ -18,6 +18,8 @@ import {MatCardModule} from '@angular/material/card';
 import {MatTableModule} from '@angular/material/table';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
+import { PostDetailsComponent } from './post-details/post-details.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -27,13 +29,14 @@ import {MatSelectModule} from '@angular/material/select';
     PostsComponent,
     EventsComponent,
     ChatsComponent,
-    NeweditpostComponent
+    NeweditpostComponent,
+    PostDetailsComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     MatButtonModule, MatToolbarModule, MatIconModule, MatListModule, AppRoutingModule,
-    MatInputModule, MatCardModule, MatTableModule, MatFormFieldModule, MatSelectModule
+    MatInputModule, MatCardModule, MatTableModule, MatFormFieldModule, MatSelectModule, ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -12,13 +12,18 @@ export class PostsComponent implements OnInit {
   public tempData: Post[];
   public displayedColumns: string[] = ['title', 'createdDate', 'media', 'action'];
 
-  constructor(private router: Router, private tempDataService: DataService) { }
+  constructor(private router: Router, private tempDataService: DataService) {
+    // this.tempData = this.tempDataService.getPosts();
+  }
 
   ngOnInit(): void {
     this.tempData = this.tempDataService.getPosts();
   }
 
-  editPost(id: any) {
-    this.router.navigate(['post', 'id']);
+  deletePost(id): void {
+    this.tempDataService.deletePost(id);
+    console.log('delete id...' + id);
+    this.tempData = this.tempData.filter(item => item.id !== id);
+    this.tempDataService.deletePost(id);
   }
 }

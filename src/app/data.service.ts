@@ -15,15 +15,21 @@ export class DataService {
 
   constructor() { }
 
-  public getPosts() {
+  public getPosts(): Post[] {
     return this.posts;
   }
 
-  public addPost(post: Post) {
-    // do something to add a new post
+  public addPost(post: Post): void {
+    this.posts.push(post);
   }
 
-  public deletePost(id: any) {
-    // delete a post
+  public deletePost(id: any): void {
+    this.posts = this.posts.filter(item => item.id !== id);
+  }
+
+  public editPost(selectedPost: Post): void {
+    const post = this.posts.find(item => item.id === selectedPost.id);
+    const index = this.posts.indexOf(post);
+    this.posts[index] = selectedPost;
   }
 }
